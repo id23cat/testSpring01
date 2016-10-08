@@ -11,5 +11,4 @@ public class AppConfig {
 	Profile profile(){
 		return new Profile();
 	}
-
 }
