@@ -12,6 +12,8 @@ public class MainApp {
 
 		profile.printAge();
 		profile.printName();
+		StudCollection studCollection = (StudCollection) context.getBean("studCollection");
+		System.out.print(studCollection);
 		}		
 	}
 }
