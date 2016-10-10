@@ -1,4 +1,4 @@
-package com.tutorialspoint;
+package org.springframework.samples;
 
 import java.util.List;
 

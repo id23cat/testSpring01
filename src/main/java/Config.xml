@@ -1,33 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
- 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
 	<context:annotation-config />
+	<aop:aspectj-autoproxy />
 
 	<!-- Definition for profile bean -->
-<!-- 	<bean id="profile" class="com.tutorialspoint.Profile"> -->
+<!-- 	<bean id="profile" class="org.springframework.samples.Profile"> -->
 <!-- 	</bean> -->
 
 	<!-- Definition for student1 bean -->
-	<bean id="student1" class="com.tutorialspoint.Student">
+	<bean id="student1" class="org.springframework.samples.Student">
 		<property name="name" value="Zara" />
 		<property name="age" value="11" />
 	</bean>
 
 	<!-- Definition for student2 bean -->
-	<bean id="student2" class="com.tutorialspoint.Student">
+	<bean id="student2" class="org.springframework.samples.Student">
 		<property name="name" value="Nuha" />
 		<property name="age" value="2" />
 	</bean>
 	
 	<!-- Definition for student2 bean -->
-	<bean id="student3" class="com.tutorialspoint.Student">
+	<bean id="student3" class="org.springframework.samples.Student">
 		<property name="name" value="Leha" />
 		<property name="age" value="77" />
 	</bean>
 	
-	<bean id="studCollection" class="com.tutorialspoint.StudCollection">
+	<bean id="studCollection" class="org.springframework.samples.StudCollection">
       <!-- results in a setAddressList(java.util.List) call -->
       <property name="profileList">
          <list>
@@ -37,4 +41,11 @@
          </list>
       </property>
     </bean>
+    
+<!-- 	<bean id="logger" class="org.springframework.samples.Logger"/> -->
+<!-- 	<aop:config> -->
+<!-- 	<aop:aspect ref="aspectBean">  -->
+	
+<!-- 	</aop:config> -->
+<!-- 	</bean> -->
 </beans>

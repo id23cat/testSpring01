@@ -1,4 +1,4 @@
-package com.tutorialspoint;
+package org.springframework.samples;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
