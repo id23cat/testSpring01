@@ -3,6 +3,7 @@ package org.springframework.samples;
 import java.util.Scanner;
 
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -22,13 +23,13 @@ public class Logger {
 	@Pointcut("execution(* org.springframework.samples.*.set*(..))")
 	private void allSetters() {
 	}
+
+	@Pointcut("execution(* org.springframework.samples.Student.get*(..))")
+	private void studentGetters() {
+	}
 	
 	@Pointcut("execution(* org.springframework.samples.Student.set*(..))")
 	private void studentSetters() {
-	}
-	
-	@Pointcut("execution(* org.springframework.samples.Student.get*(..))")
-	private void studentGetters() {
 	}
 
 	@Pointcut("execution(* org.springframework.samples.*.get*(..))")
@@ -54,17 +55,20 @@ public class Logger {
 	public void beforeStudentSetters() {
 		System.out.println("Going to call Student's setter()");
 	}
-	
-	@Around("studentSetters()")
-	public Object aroundStudentSetters(ProceedingJoinPoint pjp) throws Throwable {
+
+	@Around("execution(* org.springframework.samples.Student.set*(..)) && args(value)")
+	public Object aroundStudentSetters(ProceedingJoinPoint pjp, Integer value) throws Throwable {
 		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
-		System.out.print("Are you shure you want to change default data by calling \"" +pjp+ "\" (Y/n): ");
+		System.out.print("Are you shure you want to change default data by calling \"" 
+					+pjp+ "\" with argument " + value + " (Y/n): ");
 		String answer = scan.next();
 		Object retval = null;
 		if(answer.trim().equalsIgnoreCase("Y")){
 			System.out.println("OK-OK, i'm doing so");
+			
 			retval = pjp.proceed();
+			System.out.println("returns " + retval);
 		}else{
 			System.out.println("You've made right choise");
 		}
